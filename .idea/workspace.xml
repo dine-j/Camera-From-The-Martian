@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="552fa417-ae8a-4538-85b2-05b0a25fea0b" name="Default" comment="Renamed ButtonListener class; Add Scroll to textfield">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/amandinefederico/AddListener.java" afterPath="$PROJECT_DIR$/src/amandinefederico/ButtonListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="552fa417-ae8a-4538-85b2-05b0a25fea0b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/amandinefederico/Communication.java" afterPath="$PROJECT_DIR$/src/amandinefederico/Communication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/amandinefederico/ButtonListener.java" afterPath="$PROJECT_DIR$/src/amandinefederico/ButtonListener.java" />
     </list>
     <ignored path="Coursework 2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -428,11 +426,18 @@
       <option name="number" value="Default" />
       <updated>1455115522105</updated>
     </task>
+    <task id="LOCAL-00001" summary="Renamed ButtonListener class; Add Scroll to textfield">
+      <created>1455275654204</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1455275654204</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
