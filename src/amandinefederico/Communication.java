@@ -2,9 +2,7 @@ package amandinefederico;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class Communication extends JFrame {
 	
@@ -17,13 +15,11 @@ public class Communication extends JFrame {
 		JButton jbSend = new JButton("Send");
 		
 		add(camera, BorderLayout.NORTH);
-		add(input, BorderLayout.CENTER);
+		add(new JScrollPane(input), BorderLayout.CENTER);
 		add(jbSend, BorderLayout.SOUTH);
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 	}
 	
 	
