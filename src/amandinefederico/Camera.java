@@ -34,8 +34,8 @@ public class Camera extends JSlider {
 			} catch (InterruptedException e) {
 				//nothing
 			}
-			
 		}
+		setValue(15);
 	}
 	
 	

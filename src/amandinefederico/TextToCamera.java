@@ -10,11 +10,9 @@ public class TextToCamera {
     private Map<Character, Integer> hexValues;
     private int[] positionsForCamera;
 
-    public TextToCamera(String incomingText, AsciiTable tableToDecrypt) {
-        textToDecode = incomingText;
+    public TextToCamera(AsciiTable tableToDecrypt) {
         this.tableToDecrypt = tableToDecrypt;
         createMapHexValues();
-        translateTextToPositions();
     }
 
     private void createMapHexValues() {
@@ -30,7 +28,7 @@ public class TextToCamera {
         hexValues.put('F', 15);
     }
 
-    private void translateTextToPositions() {
+    public void translateTextToPositions() {
         translateHexToPositions();
     }
 
@@ -54,6 +52,7 @@ public class TextToCamera {
 
     private void translateHexToPositions(){
         String[] hex = translateTextToHex();
+        positionsForCamera = new int[2*hex.length];
         //ArrayList<Integer> positionsList = new ArrayList<Integer>();
 
         for(int i = 0; i < hex.length; ++i) {
