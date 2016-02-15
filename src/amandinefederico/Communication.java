@@ -19,6 +19,7 @@ public class Communication extends JFrame {
 		Camera camera = new Camera();
 		JButton jbSend = new JButton("Send");
 		jbSend.addActionListener(new ButtonListener(input, textDecoder, camera));
+		//TODO Change Frame Title when sending message
 		
 		add(camera, BorderLayout.NORTH);
 		add(new JScrollPane(input), BorderLayout.CENTER);
@@ -33,6 +34,6 @@ public class Communication extends JFrame {
 	public static void main(String args[]) throws FileNotFoundException {
 		AsciiTable table = new AsciiTable("/media/acelis/Data1/Dropbox/CS 1st year/Programming Applications/Courseworks/Coursework 2/src/ascii_table.csv");
 		Communication app = new Communication(table);
-		//System.out.println(table);
+//		System.out.println(table);
 	}
 }

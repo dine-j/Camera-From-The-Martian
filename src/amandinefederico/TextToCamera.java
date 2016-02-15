@@ -7,7 +7,7 @@ import java.util.Map;
 public class TextToCamera {
     private String textToDecode;
     private AsciiTable tableToDecrypt;
-    private Map<Character, Integer> hexValues;
+    private Map<String, Integer> hexValues;
     private int[] positionsForCamera;
 
     public TextToCamera(AsciiTable tableToDecrypt) {
@@ -16,16 +16,16 @@ public class TextToCamera {
     }
 
     private void createMapHexValues() {
-        hexValues = new HashMap<Character, Integer>();
+        hexValues = new HashMap<String, Integer>();
         for(int i = 0; i < 10; ++i) {
-            hexValues.put((char) i, i);
+            hexValues.put(""+i, i);
         }
-        hexValues.put('A', 10);
-        hexValues.put('B', 11);
-        hexValues.put('C', 12);
-        hexValues.put('D', 13);
-        hexValues.put('E', 14);
-        hexValues.put('F', 15);
+        hexValues.put("A", 10);
+        hexValues.put("B", 11);
+        hexValues.put("C", 12);
+        hexValues.put("D", 13);
+        hexValues.put("E", 14);
+        hexValues.put("F", 15);
     }
 
     public void translateTextToPositions() {
@@ -35,7 +35,7 @@ public class TextToCamera {
     private String[] translateTextToHex() {
         String[] hex = new String[textToDecode.length()];
         for(int i = 0; i < hex.length; ++i) {
-            hex[i] = tableToDecrypt.toHex(textToDecode.charAt(i));
+            hex[i] = tableToDecrypt.toHex(String.valueOf(textToDecode.charAt(i)));
         }
 
 /*        ArrayList<String> hexList = new ArrayList<String>();
@@ -56,8 +56,8 @@ public class TextToCamera {
         //ArrayList<Integer> positionsList = new ArrayList<Integer>();
 
         for(int i = 0; i < hex.length; ++i) {
-            positionsForCamera[2*i] = hexValues.get(hex[i].charAt(0));
-            positionsForCamera[2*i+1] = hexValues.get(hex[i].charAt(1));
+            positionsForCamera[2*i] = hexValues.get(String.valueOf(hex[i].charAt(0)));
+            positionsForCamera[2*i+1] = hexValues.get(String.valueOf(hex[i].charAt(1)));
         }
 
 /*        for(int i = 0; i < hex.length; ++i) {

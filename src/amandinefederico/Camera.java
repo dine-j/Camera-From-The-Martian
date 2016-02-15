@@ -1,6 +1,7 @@
 package amandinefederico;
-import javax.swing.JLabel;
-import javax.swing.JSlider;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
 public class Camera extends JSlider {
@@ -25,17 +26,54 @@ public class Camera extends JSlider {
 		setPaintLabels(true);
 	}
 	
-	public void move(int[] positions){
-		for(int i=0; i<positions.length; i++){
-			setValue(i);
-			
-			try {
-			    Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				//nothing
+	public void move(final int[] positions) {
+/*		final Timer timer = new Timer(2000, new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+
 			}
-		}
-		setValue(15);
+		});
+
+		ActionListener listener = new ActionListener() {
+			int counter = 0;
+
+			public void actionPerformed(ActionEvent actionEvent) {
+				if(counter == positions.length)
+					timer.stop();
+				else {
+					setValue(positions[counter]);
+					counter++;
+				}
+			}
+		};
+		timer.addActionListener(listener);
+		timer.start();*/
+
+		final SwingWorker<Void, Void> cameraThreadWorker = new SwingWorker<Void, Void>() {
+			protected Void doInBackground() {
+				for(int i = 0; i < positions.length; i++) {
+					setValue(positions[i]);
+
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				return null;
+			}
+		};
+
+		cameraThreadWorker.execute();
+
+/*		for(int i = 0; i < positions.length; i++){
+			setValue(positions[i]);
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}*/
 	}
 	
 	

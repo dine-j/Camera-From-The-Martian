@@ -10,7 +10,6 @@ public class AsciiTable {
     private String[][] asciiTable;
     private int MAX_ROW = 257, MAX_COLUMN = 7;
     private Map<String, String> symbolToHexMap;
-    //TODO Compter nb lignes dans fichier pour créer variable ?
 
     public AsciiTable(File asciiFile) throws FileNotFoundException {
         translateFileIntoTable(asciiFile);
@@ -53,30 +52,13 @@ public class AsciiTable {
             if(hexColumn != -1 && symbolColumn != -1)
                 break;
         }
-        //TODO Mettre if hexColumn et symbolColumn != -1 et else exception ?
         for(int i = 0; i < MAX_ROW; ++i) {
             symbolToHexMap.put(asciiTable[i][symbolColumn], asciiTable[i][hexColumn]);
         }
     }
 
-    public String toHex(char symbol) {
+    public String toHex(String symbol) {
         return symbolToHexMap.get(symbol);
-/*        int hexColumn = -1, symbolColumn = -1, wantedLine = -1;
-        for(int i = 0; i < MAX_COLUMN; ++i) {
-            if(asciiTable[0][i].equals("HEX"))
-                hexColumn = i;
-            if(asciiTable[0][i].equals("SYMBOL"))
-                symbolColumn = i;
-            if(hexColumn != -1 && symbolColumn != -1)
-                break;
-        }
-        for(int i = 0; i < MAX_ROW; ++i) {
-            if(asciiTable[i][symbolColumn].equals(symbol))
-                wantedLine = i;
-            if(wantedLine != -1)
-                break;
-        }
-        return asciiTable[wantedLine][hexColumn];*/
     }
 
     public String toString() {
