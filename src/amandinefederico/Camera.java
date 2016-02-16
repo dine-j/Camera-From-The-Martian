@@ -3,15 +3,22 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
+import java.util.Observable;
 
 public class Camera extends JSlider {
-	
-	Hashtable<Integer, JLabel> labels;
-	
-	public Camera() {
+
+	private JFrame frame;
+
+	/**
+	 * Camera constructor, takes a JFrame as a parameter
+	 * Construct the slider with labels from 0 to F
+	 * @param frame	The main frame
+     */
+	public Camera(JFrame frame) {
 		super(0,15,0);
-		
-		labels = new Hashtable<Integer, JLabel>(16);
+		this.frame = frame;
+
+		Hashtable<Integer, JLabel> labels = new Hashtable<Integer, JLabel>(16);
 		for(int i = 0; i < 10; ++i) {
 			labels.put(i, new JLabel(String.valueOf(i)));
 		}
@@ -25,31 +32,15 @@ public class Camera extends JSlider {
 		setLabelTable(labels);
 		setPaintLabels(true);
 	}
-	
+
+	/**
+	 * Moves the slider sequentially according to input positions in a separate thread and makes sure the title is updated in consequence
+	 * @param positions	Array of integers
+     */
 	public void move(final int[] positions) {
-/*		final Timer timer = new Timer(2000, new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-
-			}
-		});
-
-		ActionListener listener = new ActionListener() {
-			int counter = 0;
-
-			public void actionPerformed(ActionEvent actionEvent) {
-				if(counter == positions.length)
-					timer.stop();
-				else {
-					setValue(positions[counter]);
-					counter++;
-				}
-			}
-		};
-		timer.addActionListener(listener);
-		timer.start();*/
-
 		final SwingWorker<Void, Void> cameraThreadWorker = new SwingWorker<Void, Void>() {
 			protected Void doInBackground() {
+				frame.setTitle("Sending...");
 				for(int i = 0; i < positions.length; i++) {
 					setValue(positions[i]);
 
@@ -59,21 +50,12 @@ public class Camera extends JSlider {
 						e.printStackTrace();
 					}
 				}
+				frame.setTitle("Communication");
 				return null;
 			}
 		};
 
 		cameraThreadWorker.execute();
-
-/*		for(int i = 0; i < positions.length; i++){
-			setValue(positions[i]);
-
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}*/
 	}
 	
 	

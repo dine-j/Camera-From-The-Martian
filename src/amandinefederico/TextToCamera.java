@@ -1,6 +1,5 @@
 package amandinefederico;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,11 +9,20 @@ public class TextToCamera {
     private Map<String, Integer> hexValues;
     private int[] positionsForCamera;
 
+    /**
+     * Constructor for the TextToCamera, takes the table for translation
+     * Calls a method to create a map between hexedecimal values and corresponding decimal value for optimization of the searching process
+     * @param tableToDecrypt    Table for translation
+     */
     public TextToCamera(AsciiTable tableToDecrypt) {
         this.tableToDecrypt = tableToDecrypt;
         createMapHexValues();
     }
 
+    /**
+     * Method to create a map between hexedecimal values and corresponding decimal value for optimization of the searching process
+     *
+     */
     private void createMapHexValues() {
         hexValues = new HashMap<String, Integer>();
         for(int i = 0; i < 10; ++i) {
@@ -28,55 +36,54 @@ public class TextToCamera {
         hexValues.put("F", 15);
     }
 
+    /**
+     * Translates a text to integer positions for the Camera
+     */
     public void translateTextToPositions() {
         translateHexToPositions();
     }
 
+    /**
+     * Translates each character in a text to its corresponding hexadecimal value
+     * @return Array of hexadecimal values
+     */
     private String[] translateTextToHex() {
         String[] hex = new String[textToDecode.length()];
         for(int i = 0; i < hex.length; ++i) {
-            hex[i] = tableToDecrypt.toHex(String.valueOf(textToDecode.charAt(i)));
+            if(!String.valueOf(textToDecode.charAt(i)).equals(" ") && !String.valueOf(textToDecode.charAt(i)).equals("\n"))
+                hex[i] = tableToDecrypt.toHex(String.valueOf(textToDecode.charAt(i)));
+            else
+                hex[i] = "20";
         }
-
-/*        ArrayList<String> hexList = new ArrayList<String>();
-
-        for(char c: textToDecode.toCharArray()) {
-            hexList.add(tableToDecrypt.toHex(c));
-        }
-
-        String[] hex = new String[hexList.size()];
-        hex = hexList.toArray(hex);*/
 
         return hex;
     }
 
+    /**
+     * Translates two characters in hexadecimal to their respective integer values
+     */
     private void translateHexToPositions(){
         String[] hex = translateTextToHex();
         positionsForCamera = new int[2*hex.length];
-        //ArrayList<Integer> positionsList = new ArrayList<Integer>();
 
         for(int i = 0; i < hex.length; ++i) {
             positionsForCamera[2*i] = hexValues.get(String.valueOf(hex[i].charAt(0)));
             positionsForCamera[2*i+1] = hexValues.get(String.valueOf(hex[i].charAt(1)));
         }
-
-/*        for(int i = 0; i < hex.length; ++i) {
-            for(char c: hex[i].toCharArray()) {
-                positionsList.add(hexValues.get(c));
-            }
-        }
-
-        positionsForCamera = new int[positionsList.size()];
-
-        for(int i = 0; i < positionsForCamera.length; ++i) {
-            positionsForCamera[i] = positionsList.get(i).intValue();
-        }*/
     }
 
+    /**
+     * Gets the integer positions for the Camera
+     * @return Array of integers
+     */
     public int[] getPositionsForCamera() {
         return positionsForCamera;
     }
 
+    /**
+     * Sets the text to be decoded
+     * @param incomingText  Text to be decoded
+     */
     public void setTextToDecode(String incomingText) {
         textToDecode = incomingText;
     }
