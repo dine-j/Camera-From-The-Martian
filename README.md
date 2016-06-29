@@ -42,6 +42,15 @@ the Latin alphabet (entered by NASA on Earth, we might imagine), translates them
 hexadecimal (via ASCII encoding) and then outputs them to a graphical representation of
 the rover’s pointing camera mechanism.
 
+## Aims
+
+* To explore the roles different widgets can have in a GUI;
+* To continue the exploration of GUI layouts that began in your first Code Dojo;
+* To employ simple event handlers and to understand the implications of Swing con-
+currency;
+* To understand how to layout and structure GUI code;
+* To solve basic problems in Java.
+
 ## Contributors
 
 * **Frederico Midolo**
